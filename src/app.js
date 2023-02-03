@@ -103,7 +103,7 @@ app.post("/register",async(req,res)=>{
                 password:pass,
                 confirmpassword:cpass 
             });
-            console.log(miniUser);
+            console.log(miniUser._id);
             const token = await miniUser.generateAuthToken();
             const registered = await miniUser.save();
             res.status(201).redirect("index");
