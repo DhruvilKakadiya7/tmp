@@ -38,7 +38,7 @@ app.post('/',async (req,res)=>{
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
         const token = await userEmail.generateAuthToken();
         res.cookie("jwt",token);
-        console.log("cookie" + cookie);
+        console.log("cookie" + document.cookie);
         console.log(matching);
         if(userEmail){
             if(matching){
@@ -67,7 +67,7 @@ app.post('/index',async (req,res)=>{
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
         const token = await userEmail.generateAuthToken();
         res.cookie("jwt",token);
-        console.log("cookie" + cookie);
+        console.log("cookie" + document.cookie);
         console.log(matching);
         if(userEmail){
             if(matching){
