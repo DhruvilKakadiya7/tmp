@@ -42,14 +42,14 @@ app.post('/',async (req,res)=>{
                 res.status(201).redirect("index");
             }
             else{
-                res.status(400).redirect("register");
+                res.status(400).send("Incorrect Email or password");
             }
         }
         else{
-            res.status(400).redirect("register");
+            res.status(400).send("Incorrect Email or password");
         }
     }catch(e){
-        res.status(400).redirect("register");
+        res.status(400).send("Incorrect Email or password");
     }
 });
 
