@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     }]
     
 });
-userSchema.methods.generateAuthToken = async ()=>{
+userSchema.methods.generateAuthToken = async function(){
     try{
         console.log(this._id);
         const token = jwt.sign({_id:this._id.toString()}, "mynameisdhruvilkakadiyairgwbrhjwdaljthsztdjuuf");
@@ -48,7 +48,7 @@ userSchema.methods.generateAuthToken = async ()=>{
     }catch(e){
         console.log(e);
     }
-};
+}
 const Userdata = new mongoose.model("User",userSchema);
 
 module.exports = Userdata;
