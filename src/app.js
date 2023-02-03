@@ -37,7 +37,11 @@ app.post('/',async (req,res)=>{
         const ok = userEmail.password;
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
         const token = await userEmail.generateAuthToken();
-        res.cookie("jwt",token);
+        res.cookie("jwt",token,{
+            expires:new Date(Date.now()+50000),
+            secure:true,
+            htttpOnly:true
+        });
         console.log(matching);
         if(userEmail){
             if(matching){
@@ -65,7 +69,11 @@ app.post('/index',async (req,res)=>{
         const ok = userEmail.password;
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
         const token = await userEmail.generateAuthToken();
-        res.cookie("jwt",token);
+        res.cookie("jwt",token,{
+            expires:new Date(Date.now()+50000),
+            secure:true,
+            htttpOnly:true
+        });
         console.log(matching);
         if(userEmail){
             if(matching){
