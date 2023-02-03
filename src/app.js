@@ -36,6 +36,11 @@ app.post('/',async (req,res)=>{
         const password = req.body.pass;
         const ok = userEmail.password;
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
+        const token = await userEmail.generateAuthToken();
+        res.cookie("jwt",token,{
+            expires: new Date(date.now()+30000),
+            htttpOnly:true
+        });
         console.log(matching);
         if(userEmail){
             if(matching){
