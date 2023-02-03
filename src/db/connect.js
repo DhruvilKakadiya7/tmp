@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 let link = process.env.DATA_BASE;
-console.log(link);
 mongoose.set('strictQuery', true);
 mongoose.connect(link)
 .then(()=>{
