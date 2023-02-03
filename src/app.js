@@ -53,7 +53,8 @@ app.post('/',async (req,res)=>{
             res.status(400).send("Incorrect Email or password");
         }
     }catch(e){
-        res.status(400).send("Incorrect Email or password");
+        console.log(e);
+        res.status(400).send("Incorrect Email or password ");
     }
 });
 
@@ -84,6 +85,7 @@ app.post('/index',async (req,res)=>{
         }
     }catch(e){
         // alert("Register First");
+        console.log(e);
         res.status(400).send("Incorrect Email or password "+ e);
     }
 });
