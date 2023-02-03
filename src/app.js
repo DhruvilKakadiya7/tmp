@@ -116,6 +116,9 @@ app.post("/register",async(req,res)=>{
     }
 });
 
+app.get('/login',(req,res)=>{
+    res.status(201).render("login");
+});
 app.listen(port,()=>{
     console.log(`server is running at port no ${port}`);
 });
