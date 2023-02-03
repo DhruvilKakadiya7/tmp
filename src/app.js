@@ -84,7 +84,7 @@ app.post('/index',async (req,res)=>{
         }
     }catch(e){
         // alert("Register First");
-        res.status(400).send("Incorrect Email or password");
+        res.status(400).send("Incorrect Email or password "+ e);
     }
 });
 
