@@ -39,7 +39,7 @@ app.post('/',async (req,res)=>{
         if(userEmail){
             if(matching){
                 console.log("LOGIN SUCCESSFULL");
-                res.status(201).redirect("login");
+                res.status(201).render("login");
             }
             else{
                 res.status(400).send("Incorrect Email or password");
