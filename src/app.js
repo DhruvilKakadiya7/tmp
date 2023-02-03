@@ -68,16 +68,16 @@ app.post('/index',async (req,res)=>{
             }
             else{
                 // alert("Register First");
-                res.status(400).redirect("register");
+                res.status(400).send("Incorrect Email or password");
             }
         }
         else{
             // alert("Register First");
-            res.status(400).redirect("register");
+            res.status(400).send("Incorrect Email or password");
         }
     }catch(e){
         // alert("Register First");
-        res.status(400).redirect("register");
+        res.status(400).send("Incorrect Email or password");
     }
 });
 
