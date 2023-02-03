@@ -64,7 +64,7 @@ app.post('/index',async (req,res)=>{
         if(userEmail){
             if(matching){
                 console.log("LOGIN SUCCESSFULL");
-                res.status(201).redirect("login");
+                res.status(201).render("login");
             }
             else{
                 // alert("Register First");
