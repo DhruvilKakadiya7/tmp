@@ -38,8 +38,8 @@ app.post('/',async (req,res)=>{
         console.log(matching);
         if(userEmail){
             if(matching){
-                console.log("Login DOne");
-                res.status(201).redirect("index");
+                console.log("LOGIN SUCCESSFULL");
+                res.status(201).redirect("login");
             }
             else{
                 res.status(400).send("Incorrect Email or password");
@@ -63,8 +63,8 @@ app.post('/index',async (req,res)=>{
         console.log(matching);
         if(userEmail){
             if(matching){
-                console.log("Login DOne");
-                res.status(201).redirect("index");
+                console.log("LOGIN SUCCESSFULL");
+                res.status(201).redirect("login");
             }
             else{
                 // alert("Register First");
