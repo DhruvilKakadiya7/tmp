@@ -40,7 +40,7 @@ app.post('/',async (req,res)=>{
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
         const token = await userEmail.generateAuthToken();
         res.cookie("jwt",token,{
-            expires:new Date(Date.now()+50000),
+            expires:new Date(Date.now()+10*60*1000),
             secure:true,
             htttpOnly:true
         });
@@ -72,7 +72,7 @@ app.post('/index',async (req,res)=>{
         const matching = await bcrypt.compare(req.body.pass,userEmail.password);
         const token = await userEmail.generateAuthToken();
         res.cookie("jwt",token,{
-            expires:new Date(Date.now()+50000),
+            expires:new Date(Date.now()+10*60*1000),
             secure:true,
             htttpOnly:true
         });
@@ -137,8 +137,11 @@ app.post("/register",async(req,res)=>{
 });
 
 app.get('/login', auth ,(req,res)=>{
-    console.log(`my cookie ${req.cookies.jwt}`);
     res.status(201).render("login");
+});
+
+app.get('/logout',auth,(req,res)=>{
+    res.status(201).render("logout");
 });
 app.listen(port,()=>{
     console.log(`server is running at port no ${port}`);
