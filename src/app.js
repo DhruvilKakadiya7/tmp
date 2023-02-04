@@ -5,17 +5,19 @@ const app = express();
 const path = require('path');
 require('./db/connect');
 const User = require('./models/users');
+const cookieparser = require('cookie-parser');
 const hbs = require('hbs');
 const exp = require('constants');
 const bcrypt = require('bcryptjs');
 const { cp } = require('fs');
-
+const auth = require('./middleware/auth');
 const port = process.env.PORT || 3000;
 const static_path = path.join(__dirname,"../public")
 const tmplates_path = path.join(__dirname,"../templates/views")//LoginPage\templates\partials
 const partials_path = path.join(__dirname,"../templates/partials");
 
 app.use(express.json());
+app.use(cookieparser());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(static_path));
 app.set("view engine", "hbs");
@@ -74,6 +76,8 @@ app.post('/index',async (req,res)=>{
             secure:true,
             htttpOnly:true
         });
+
+    
         console.log(matching);
         if(userEmail){
             if(matching){
@@ -132,7 +136,8 @@ app.post("/register",async(req,res)=>{
     }
 });
 
-app.get('/login',(req,res)=>{
+app.get('/login', auth ,(req,res)=>{
+    console.log(`my cookie ${req.cookies.jwt}`);
     res.status(201).render("login");
 });
 app.listen(port,()=>{
