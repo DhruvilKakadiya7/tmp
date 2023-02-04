@@ -7,6 +7,8 @@ const auth = async (req,res,next)=>{
         const verify = jwt.verify(token,process.env.SECRET_KEY);
         
         const user = await registeredUser.findOne({_id:verify._id});
+        req.token = token;
+        req.user = user;
         next();
     }catch(e){
         res.status(400).send(e);

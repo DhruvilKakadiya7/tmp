@@ -136,8 +136,18 @@ app.post("/register",async(req,res)=>{
     }
 });
 
-app.get('/login', auth ,(req,res)=>{
-    res.status(201).render("login");
+app.get('/login', auth ,async(req,res)=>{
+    try {
+        req.user.tokens = req.user.tokens.filter((curr)=>{
+            return curr.token !== req.token;
+        });
+        res.clearCookie("jwt");
+        await req.user.save();
+        res.status(201).render("index");
+    } catch (error) {
+        res.status(401).send(error);
+    }
+    
 });
 
 app.get('/logout',auth,(req,res)=>{
